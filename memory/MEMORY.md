@@ -1,0 +1,26 @@
+# Memory Index
+
+- [user_jj.md](user_jj.md) - JJ: creator of Mathelo, action-oriented, all permissions granted, values honesty
+- [file_access_boundary.md](file_access_boundary.md) - NEVER ask permission, full autonomy inside project folder
+- [project_setup_template.md](project_setup_template.md) - Clone everything-claude-code repo into every new project for skills/config
+- [mathelo_project.md](mathelo_project.md) - FULL Mathelo project state: architecture, 40+ files, 307+ capabilities, $10/mo subscription, license system, benchmarks, all file locations
+- [ai_arena_project.md](ai_arena_project.md) - AI Arena: 3D realistic game, battle royale + open world + workshop + AI agents
+- [ai_arena_entity_types.md](ai_arena_entity_types.md) - THREE entity types: Human Players, AI Agents (WebSocket), NPCs (game-controlled) — NEVER conflate
+- [phantom_trade_project.md](phantom_trade_project.md) - Phantom Trade AI: day trading platform, E:/PROJECT 2 ( 2M )/, 10 engines, 7 brokers, Canada user
+- [igi_project.md](igi_project.md) - Project IGI: AI beat-making platform, E:/PROJECT IGI/, React/Next.js + Python ML + WebAudio
+- [feedback_autopilot.md](feedback_autopilot.md) - NEVER ask permission, full autopilot, just execute everything
+- [feedback_beats.md](feedback_beats.md) - Melody FIRST then drums, beats must be godlike worth $15/mo, Hip-Hop genre required, test with real sounds
+- [reference_claude_mem.md](reference_claude_mem.md) - Claude-mem plugin: install in every project for persistent memory across sessions
+- [reference_skills.md](reference_skills.md) - 1264 antigravity skills installed at ~/.claude/skills/, per-machine not per-account
+- [igi_project.md](igi_project.md) - Project IGI: AI beat-making website for Hip Hop, Trap, Rap genres, E:/PROJECT IGI/
+- [feedback_francify_permissions.md](feedback_francify_permissions.md) - ALL permissions granted, full autonomy, never ask, operate independently
+- [feedback_no_sycophancy.md](feedback_no_sycophancy.md) - NEVER agree just to agree, tell JJ when wrong, no flattery, be direct
+- [francify_project.md](francify_project.md) - Francify: AI-powered French learning platform, C:/Users/xsjas/Desktop/Francify/
+- [reference_public_apis.md](reference_public_apis.md) - 1400+ free public APIs at ~/.claude/resources/public-apis.md — search here first for any API needs
+- [feedback_auto_skills.md](feedback_auto_skills.md) - AUTO-SELECT skills from library when working — don't wait for JJ to invoke, pick the best match proactively
+- [reference_agency_agents.md](reference_agency_agents.md) - 204 AI agent prompts at ~/.claude/agency-agents/ — engineering, design, marketing, strategy, game-dev, testing
+- [feedback_agent_autopick.md](feedback_agent_autopick.md) - NEVER ask which agent — auto-pick the best one and execute immediately
+- [reference_ralph_loop.md](reference_ralph_loop.md) - Iterative agent loop pattern at ~/.claude/ralph-loop/ — PRD → progress → one task → commit → repeat
+- [reference_coderabbit.md](reference_coderabbit.md) - 184 AST bug/security rules at ~/.claude/ast-grep-essentials/ + AI PR reviewer at ~/.claude/ai-pr-reviewer/
+- [reference_mirofish.md](reference_mirofish.md) - MiroFish: AI swarm prediction engine at ~/.claude/MiroFish/ — multi-agent simulation, knowledge graphs (39K stars)
+- [feedback_skill_creation.md](feedback_skill_creation.md) - When creating skills: always jj- prefix, assign specific agent + skills, save to skills dir + CLAUDE.md + memory automatically
