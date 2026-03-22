@@ -99,6 +99,7 @@
 - `/jj-theme-quebec` — Apply Quebec government brand colors
 - `/jj-self-learn` — Failure-driven learning loop: fail → analyze → pivot to totally different approach → test → loop until success
 - `/jj-security-audit` — Deep security audit of any repo/package/code before installing — read every file, check for malware
+- `/jj-agent-with-skill` — Inject skill knowledge into agent prompts so agents operate WITH skill expertise
 
 ## Stack Preferences
 - Next.js 14+ (App Router), React 18+, TypeScript

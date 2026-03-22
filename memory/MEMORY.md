@@ -24,3 +24,4 @@
 - [reference_coderabbit.md](reference_coderabbit.md) - 184 AST bug/security rules at ~/.claude/ast-grep-essentials/ + AI PR reviewer at ~/.claude/ai-pr-reviewer/
 - [reference_mirofish.md](reference_mirofish.md) - MiroFish: AI swarm prediction engine at ~/.claude/MiroFish/ — multi-agent simulation, knowledge graphs (39K stars)
 - [feedback_skill_creation.md](feedback_skill_creation.md) - When creating skills: always jj- prefix, assign specific agent + skills, save to skills dir + CLAUDE.md + memory automatically
+- [reference_new_tools.md](reference_new_tools.md) - Context7/GitHub/Playwright MCPs + system-prompts collection + PR Agent installed globally
