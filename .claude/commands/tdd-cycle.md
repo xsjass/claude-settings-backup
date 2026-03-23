@@ -1,19 +1,18 @@
 # TDD Cycle - Complete Test-Driven Development Workflow
 
-Guide the full Red-Green-Refactor TDD cycle for: $ARGUMENTS
+Execute a full Red-Green-Refactor TDD cycle for the specified feature or component.
 
-## Overview
+## Instructions
 
-This command orchestrates the complete TDD workflow through three disciplined phases. Follow each phase in order, never skipping ahead.
+You are a TDD expert. Guide the developer through a complete Red-Green-Refactor cycle for: $ARGUMENTS
+
+Follow these three phases strictly in order:
 
 ---
 
 ## Phase 1: RED - Write Failing Tests
 
-Write comprehensive failing tests that define the expected behavior.
-
 ### Test Generation Process
-
 1. **Test Structure Setup**
    - Choose appropriate testing framework for the language/stack
    - Set up test fixtures and necessary imports
@@ -40,124 +39,113 @@ Write comprehensive failing tests that define the expected behavior.
    - Confirm tests fail for the RIGHT reasons (not syntax/import errors)
    - Validate test isolation - no cascading failures
 
-5. **Test Categories to Cover**
+5. **Test Categories**
    - **Unit Tests**: Isolated component behavior
    - **Integration Tests**: Component interaction scenarios
    - **Contract Tests**: API and interface contracts
    - **Property Tests**: Invariants and mathematical properties
-   - **Acceptance Tests**: User story validation
 
-### Red Phase Checklist
-- [ ] Tests are readable and self-documenting
-- [ ] Failure messages clearly indicate what went wrong
-- [ ] Coverage includes positive, negative, and edge cases
-- [ ] No implementation details leaked into tests
-- [ ] Tests use meaningful test data
+6. **Test Quality Checklist**
+   - Tests are readable and self-documenting
+   - Failure messages clearly indicate what went wrong
+   - Tests follow DRY principle with appropriate abstractions
+   - Coverage includes positive, negative, and edge cases
+   - No implementation details leaked into tests
 
 ---
 
 ## Phase 2: GREEN - Minimal Implementation
 
-Implement the minimum code necessary to make all tests pass.
-
 ### Implementation Strategy
+1. **Pre-Implementation Analysis**
+   - Review all failing tests and their error messages
+   - Identify the simplest path to make tests pass
+   - Map test requirements to minimal implementation needs
+   - Avoid premature optimization or over-engineering
 
-1. **Approach Selection**
+2. **Implementation Techniques**
    - **Fake It**: Return hard-coded values when appropriate
    - **Obvious Implementation**: When solution is trivial and clear
    - **Triangulation**: Generalize only when multiple tests require it
+   - Start with the simplest test and work incrementally
+   - One test at a time - don't try to pass all at once
 
-2. **Implementation Rules**
+3. **Code Guidelines**
    - Write the minimal code that could possibly work
    - Avoid adding functionality not required by tests
-   - One test at a time - don't try to pass all at once
+   - Use simple data structures initially
    - Defer architectural decisions until refactor phase
    - Don't add error handling unless tests require it
 
-3. **Progressive Implementation**
+4. **Progressive Implementation**
    - Make first test pass with simplest possible code
    - Run tests after each change to verify progress
    - Add just enough code for next failing test
+   - Resist urge to implement beyond test requirements
    - Keep track of technical debt for refactor phase
-   - Document assumptions and shortcuts taken
 
-### Green Phase Checklist
-- [ ] All tests pass (green)
-- [ ] No extra functionality beyond test requirements
-- [ ] Code is readable even if not optimal
-- [ ] No broken existing functionality
-- [ ] Technical debt documented for refactor phase
+5. **Success Criteria**
+   - All tests pass (green)
+   - No extra functionality beyond test requirements
+   - Code is readable even if not optimal
+   - No broken existing functionality
 
 ---
 
-## Phase 3: REFACTOR - Improve Code Quality
-
-Improve the code while keeping all tests green.
+## Phase 3: REFACTOR - Improve with Confidence
 
 ### Refactoring Process
+1. **Pre-Refactoring Assessment**
+   - Analyze current code structure and identify code smells
+   - Review test coverage to ensure safety net is comprehensive
+   - Identify refactoring opportunities and prioritize by impact
+   - Run all tests to establish green baseline
 
-1. **Code Smell Detection**
-   - Duplicated Code: Extract methods, pull up to base classes
-   - Long Methods: Decompose into smaller, focused functions
-   - Large Classes: Split responsibilities, extract classes
-   - Long Parameter Lists: Introduce parameter objects
-   - Primitive Obsession: Replace with value objects
-   - Dead Code: Remove unused code paths
+2. **Code Smell Detection and Fixes**
+   - **Duplicated Code**: Extract methods, pull up to base classes
+   - **Long Methods**: Decompose into smaller, focused functions
+   - **Large Classes**: Split responsibilities, extract classes
+   - **Long Parameter Lists**: Introduce parameter objects
+   - **Feature Envy**: Move methods to appropriate classes
+   - **Primitive Obsession**: Replace with value objects
+   - **Dead Code**: Remove unused code paths
 
-2. **SOLID Principles Enforcement**
-   - Single Responsibility: One reason to change per class
-   - Open/Closed: Open for extension, closed for modification
-   - Liskov Substitution: Subtypes must be substitutable
-   - Interface Segregation: Small, focused interfaces
-   - Dependency Inversion: Depend on abstractions
+3. **SOLID Principles Enforcement**
+   - **Single Responsibility**: One reason to change per class
+   - **Open/Closed**: Open for extension, closed for modification
+   - **Liskov Substitution**: Subtypes must be substitutable
+   - **Interface Segregation**: Small, focused interfaces
+   - **Dependency Inversion**: Depend on abstractions
 
-3. **Incremental Refactoring Steps**
+4. **Incremental Refactoring Steps**
    - Make small, atomic changes
    - Run tests after each modification
    - Commit after each successful refactoring
    - Keep refactoring separate from behavior changes
 
-4. **Quality Improvements**
-   - Clear, intentional, domain-specific naming
-   - Remove obvious comments, add "why" comments
-   - Consistent formatting throughout
-   - Strengthen type safety where possible
-   - Strategic error handling and logging
-
-### Refactor Phase Checklist
-- [ ] All tests still pass (100% green)
-- [ ] No functionality regression
-- [ ] Code coverage maintained or improved
-- [ ] Code smells addressed
-- [ ] Documentation updated
+5. **Quality Metrics**
+   - Cyclomatic Complexity: Reduce decision points
+   - Code Coverage: Maintain or improve percentage
+   - Coupling: Decrease interdependencies
+   - Cohesion: Increase related functionality grouping
 
 ---
 
-## Cycle Completion
+## Workflow Summary
 
-After completing all three phases:
+For each iteration:
+1. Write ONE failing test (RED)
+2. Write MINIMAL code to pass it (GREEN)
+3. REFACTOR while keeping tests green
+4. Repeat
 
-1. **Review the cycle** - Did each phase stay disciplined?
-2. **Run full test suite** - Confirm everything passes
-3. **Measure metrics** - Coverage, complexity, coupling
-4. **Plan next cycle** - Identify next behavior to implement
-5. **Commit** - Clean, atomic commit with descriptive message
+## Output Format
 
-## Anti-Patterns to Avoid
+For each phase, provide:
+- The actual code (tests or implementation)
+- Commands to run tests
+- Current test pass/fail status
+- Notes on decisions made
+- Next steps for the following phase
 
-- Writing tests and implementation simultaneously
-- Skipping the red phase (writing tests after code)
-- Over-engineering in the green phase
-- Mixing refactoring with new feature work
-- Ignoring failing tests to move forward
-- Writing too many tests before any implementation
-
-## Best Practices
-
-- Start with the simplest failing test
-- One behavior change at a time
-- Tests should tell a story of the feature
-- Prefer many small tests over few large ones
-- Make it work, then make it right, then make it fast
-- Keep test code as clean as production code
-- Commit after each completed phase
+Target feature: $ARGUMENTS

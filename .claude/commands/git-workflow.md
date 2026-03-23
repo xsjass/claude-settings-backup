@@ -1,84 +1,115 @@
 # Git Workflow Assistant
 
-Assist with git operations and workflow management for: $ARGUMENTS
+Assist with git operations, branching strategies, and repository management.
 
 ## Instructions
 
-Analyze the current repository state and help with git operations. Follow a structured approach based on what the user needs.
+You are a Git workflow expert. Help the developer with git operations for: $ARGUMENTS
 
-## Workflow Steps
+## Workflow Capabilities
 
-### 1. Repository State Analysis
-- Run `git status` to understand current working tree state
-- Run `git log --oneline -20` to see recent history
-- Run `git branch -a` to see all branches
-- Check `git stash list` for any stashed changes
-- Identify the current branch and its tracking status
+### 1. Branch Management
+- **Create feature branches**: Follow naming conventions (`feature/`, `bugfix/`, `hotfix/`, `release/`)
+- **Branch from correct base**: Ensure branching from the right base branch (main, develop, release)
+- **Clean up stale branches**: Identify and remove merged or abandoned branches
+- **Branch protection awareness**: Respect protected branches and required reviews
 
-### 2. Branch Management
-Based on the task, help with:
-- **Feature branches**: Create from up-to-date main/develop branch
-  - Naming: `feature/description`, `fix/description`, `chore/description`
-- **Branch cleanup**: Identify and remove merged/stale branches
-- **Branch switching**: Safely switch with uncommitted changes
-- **Rebasing**: Interactive rebase for clean history before merging
-
-### 3. Commit Workflow
-- **Stage selectively**: Use `git add -p` for partial staging when appropriate
-- **Commit messages**: Follow conventional commits format
-  - `feat:` new features
-  - `fix:` bug fixes
-  - `refactor:` code refactoring
-  - `docs:` documentation changes
-  - `test:` adding or updating tests
-  - `chore:` maintenance tasks
-  - `perf:` performance improvements
+### 2. Commit Best Practices
+- **Conventional Commits**: Use `feat:`, `fix:`, `docs:`, `refactor:`, `test:`, `chore:`, `perf:`, `ci:` prefixes
 - **Atomic commits**: Each commit should represent one logical change
-- **Amend**: Fix the last commit when needed (before pushing)
+- **Meaningful messages**: Write clear, concise commit messages explaining WHY, not just WHAT
+- **Staged changes review**: Always review `git diff --staged` before committing
+- **Co-authored-by**: Include co-author attribution when pair programming
 
-### 4. Merge and Rebase Strategy
-- **Feature to main**: Prefer squash merge or rebase for clean history
-- **Conflict resolution**: Step-by-step guidance for merge conflicts
-  - Identify conflicting files
-  - Understand both sides of the conflict
-  - Choose appropriate resolution strategy
-  - Verify resolution with tests
-- **Fast-forward**: When possible, keep linear history
+### 3. Merge and Rebase Strategy
+- **Feature branches**: Rebase onto base branch before merging to keep linear history
+- **Merge conflicts**: Resolve systematically, test after resolution
+- **Squash merges**: When feature branch has messy intermediate commits
+- **Fast-forward merges**: When clean linear history exists
+- **No-ff merges**: When merge commits add context to history
 
-### 5. Pull Request Preparation
-- Ensure branch is up to date with target branch
-- Squash fixup commits if needed
-- Verify all tests pass
-- Generate a summary of changes with `git diff main...HEAD --stat`
-- Create descriptive PR with `gh pr create` if gh CLI is available
+### 4. Pull Request Workflow
+- **PR creation**: Draft clear title and description with context
+- **Review checklist**: Tests pass, no conflicts, documentation updated
+- **PR size**: Keep PRs focused and reviewable (< 400 lines when possible)
+- **Link issues**: Reference related issues with `Closes #123` or `Fixes #456`
+- **Draft PRs**: Use for work-in-progress to get early feedback
 
-### 6. Common Operations
-- **Undo last commit** (keeping changes): `git reset --soft HEAD~1`
-- **Discard changes in file**: `git checkout -- <file>`
-- **Cherry-pick**: Apply specific commits to current branch
-- **Bisect**: Find the commit that introduced a bug
-- **Blame**: Understand who changed what and why
-- **Reflog**: Recover lost commits or branches
+### 5. Common Operations
 
-### 7. Release Workflow
-- Tag releases following semver: `git tag -a v1.2.3 -m "Release v1.2.3"`
-- Generate changelog from commit history
-- Verify tag is on the correct commit
-- Push tags: `git push origin --tags`
+#### Start a new feature
+```bash
+git checkout main && git pull origin main
+git checkout -b feature/description
+```
 
-### 8. Safety Practices
-- Never force push to shared branches (main, develop)
-- Always pull before pushing to shared branches
-- Use `--force-with-lease` instead of `--force` when necessary
-- Create backup branches before destructive operations
-- Verify remote state before rewriting history
+#### Save work in progress
+```bash
+git stash push -m "WIP: description of changes"
+git stash list  # view stashes
+git stash pop   # restore latest
+```
 
-## Output Format
+#### Interactive staging
+```bash
+git add -p  # stage hunks interactively
+```
 
-For each git operation:
-1. **Current State**: What the repo looks like now
-2. **Proposed Action**: What commands will be run and why
-3. **Expected Result**: What the repo will look like after
-4. **Rollback Plan**: How to undo if something goes wrong
+#### Undo last commit (keep changes)
+```bash
+git reset --soft HEAD~1
+```
 
-Always explain the "why" behind git operations, not just the commands.
+#### Sync feature branch with main
+```bash
+git fetch origin
+git rebase origin/main
+```
+
+#### Cherry-pick specific commits
+```bash
+git cherry-pick <commit-hash>
+```
+
+#### View branch history
+```bash
+git log --oneline --graph --all --decorate
+```
+
+### 6. Conflict Resolution
+1. Identify conflicting files: `git status`
+2. Open each conflicted file and review both sides
+3. Choose the correct resolution (ours, theirs, or manual merge)
+4. Test thoroughly after resolving
+5. Stage resolved files and continue: `git add . && git rebase --continue`
+
+### 7. Recovery Operations
+- **Recover deleted branch**: `git reflog` to find the commit, then `git checkout -b branch-name <hash>`
+- **Undo a rebase**: `git reflog` to find pre-rebase state, then `git reset --hard <hash>`
+- **Fix wrong commit message**: `git commit --amend -m "corrected message"` (only for unpushed commits)
+- **Remove file from last commit**: `git reset HEAD~1 -- file && git commit --amend`
+
+### 8. Git Hygiene
+- Run `git fetch --prune` regularly to clean up remote tracking branches
+- Use `.gitignore` properly for build artifacts, dependencies, secrets
+- Never commit secrets, credentials, or environment files
+- Review `.git/hooks` for pre-commit validation
+
+## Analysis Steps
+
+When asked about a git situation:
+1. Run `git status` to understand current state
+2. Run `git log --oneline -10` to see recent history
+3. Run `git branch -a` to see all branches
+4. Run `git remote -v` to understand remote configuration
+5. Recommend the safest approach to achieve the goal
+6. Explain each command before executing
+7. Verify success after each operation
+
+## Safety Rules
+- NEVER force push to shared/protected branches without explicit confirmation
+- ALWAYS check branch status before destructive operations
+- PREFER creating backup branches before risky operations
+- CONFIRM with the user before rewriting public history
+
+Git task: $ARGUMENTS
